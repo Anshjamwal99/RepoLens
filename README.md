@@ -93,6 +93,31 @@ These observations indicated the need for a more advanced system capable of prov
 - Background processing using Inngest will handle asynchronous tasks such as repository indexing and AI review generation.
 - Together, these technologies will work in an integrated architecture to provide a scalable, automated, and context-aware code review system.
 
+The system uses a Next.js frontend and backend to manage user interaction and API communication. GitHub webhooks trigger background jobs that process pull requests and retrieve repository context from a vector database. The retrieved context and code changes are analyzed using a generative AI model to produce structured code reviews, which are stored in the database and displayed in the dashboard.
+
+```mermaid
+flowchart LR
+A[User Browser\nNext.js + React Frontend]
+A --> B[Next.js Backend API\nServer Actions]
+B --> C[Authentication\nBetter Auth]
+B --> D[(PostgreSQL Database\nPrisma ORM)]
+B --> E[GitHub Integration\nOctokit API]
+E --> F[GitHub Webhooks\nPull Request Events]
+F --> G[Background Jobs\nInngest]
+G --> H[Repository Processing\nCode Chunking]
+H --> I[Embedding Generation\nAI Embedding Model]
+I --> J[(Pinecone Vector Database)]
+G --> K[Retrieve PR Diff]
+K --> L[Context Retrieval\nfrom Pinecone]
+L --> M[Prompt Construction]
+M --> N[Google Gemini AI]
+N --> O[AI Generated Code Review]
+O --> D
+O --> E
+D --> P[Dashboard Analytics\nRecharts + TanStack Query]
+P --> A
+```
+
 ## Expected Outcomes
 
 The project is expected to deliver a fully functional AI-powered code review platform capable of assisting developers during the pull request process.
