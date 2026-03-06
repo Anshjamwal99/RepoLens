@@ -1,4 +1,4 @@
-# RepoLens – AI-Powered Context-Aware Code Review Platform Using Retrieval-Augmented Generation (RAG) and Generative AI
+# RepoLens - AI-Powered Context-Aware Code Review
 
 ## Project Overview
 
